@@ -1,52 +1,355 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SUG Award Night Voting</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Home — SUG Poly Ibadan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700;900&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F3ED;--ink:#142620;--primary:#1B4D3E;--pl:#2F7A5E;--gold:#E2A63B;--red:#B5402F;--card:#FFFFFF;--line:rgba(20,38,32,0.12);--max:1180px;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;}
+img{display:block;max-width:100%;}a{color:inherit;text-decoration:none;}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px;}
+.eyebrow{font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.28em;text-transform:uppercase;color:var(--pl);font-weight:500;}
+h1,h2,h3,h4{font-family:'Archivo',sans-serif;font-weight:900;letter-spacing:-.01em;color:var(--ink);}
+/* NAV */
+header{position:sticky;top:0;z-index:100;background:rgba(245,243,237,.93);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);}
+.nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:var(--max);margin:0 auto;}
+.brand{display:flex;align-items:center;gap:12px;}
+.brand-text{display:flex;flex-direction:column;line-height:1.15;}
+.brand-text .top{font-family:'Archivo',sans-serif;font-weight:900;font-size:1rem;}
+.brand-text .bot{font-size:.7rem;color:var(--pl);font-family:'JetBrains Mono',monospace;letter-spacing:.12em;text-transform:uppercase;}
+.seal{width:46px;height:46px;flex-shrink:0;object-fit:contain;}
+.seal-lg{width:72px;height:72px;object-fit:contain;}
+nav.links{display:flex;gap:22px;font-weight:600;font-size:.9rem;}
+nav.links a{padding:4px 0;transition:color .2s;}
+nav.links a:hover,nav.links a.active{color:var(--pl);}
+.menu-toggle{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:6px;}
+.menu-toggle span{width:24px;height:2px;background:var(--ink);display:block;}
+
+/* GRID CONFIGURATIONS */
+.grid-system {display:grid;gap:24px;margin-top:32px;}
+.two-col {grid-template-columns: repeat(2, 1fr);}
+.three-col {grid-template-columns: repeat(3, 1fr);}
+.four-col {grid-template-columns: repeat(4, 1fr);}
+
+@media(max-width:860px){
+  nav.links{position:absolute;top:100%;left:0;right:0;background:var(--bg);flex-direction:column;gap:0;border-bottom:1px solid var(--line);max-height:0;overflow:hidden;transition:max-height .3s;}
+  nav.links.open{max-height:420px;}
+  nav.links a{padding:14px 24px;border-top:1px solid var(--line);}
+  .menu-toggle{display:flex;}
+  .two-col, .three-col, .four-col{grid-template-columns:1fr !important;}
+}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:2px;font-weight:600;font-size:.95rem;border:1px solid var(--ink);transition:all .2s;cursor:pointer;}
+.btn-primary{background:var(--primary);color:#fff;border-color:var(--primary);}
+.btn-primary:hover{background:var(--pl);border-color:var(--pl);}
+.btn-ghost{background:transparent;color:var(--ink);}
+.btn-ghost:hover{background:var(--ink);color:var(--bg);}
+/* PAGE HERO */
+.page-hero{padding:64px 0;border-bottom:1px solid var(--line);background:var(--primary);}
+.page-hero .eyebrow{color:var(--gold);}
+.page-hero h1{color:#fff;font-size:clamp(2rem,5vw,3.4rem);margin:12px 0 14px;}
+.page-hero p{color:rgba(255,255,255,.8);max-width:560px;font-size:1.05rem;}
+/* SECTION */
+section{padding:72px 0;border-bottom:1px solid var(--line);}
+.section-head{margin-bottom:40px;}
+.section-head h2{font-size:clamp(1.8rem,4vw,2.5rem);}
+/* CARD */
+.card{background:var(--card);border:1px solid var(--line);border-radius:4px;padding:28px;transition:transform .2s,box-shadow .2s;}
+.card:hover{transform:translateY(-4px);box-shadow:0 10px 30px rgba(20,38,32,.08);}
+/* EXEC */
+.exec-card{text-align:left;}
+.avatar{width:100%;aspect-ratio:1/1;border-radius:4px;display:flex;align-items:center;justify-content:center;font-family:'Archivo',sans-serif;font-weight:900;font-size:2.4rem;color:#fff;margin-bottom:14px;background:var(--pl);}
+/* FOOTER */
+footer{padding:48px 0 28px;}
+.footer-grid{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:32px;}
+.footer-brand{display:flex;align-items:center;gap:14px;}
+.footer-cols{display:flex;gap:48px;flex-wrap:wrap;}
+.footer-cols h5{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:#5b6b65;margin-bottom:12px;}
+.footer-cols a{display:block;font-size:.92rem;margin-bottom:8px;color:#3c4d46;}
+.footer-cols a:hover{color:var(--primary);}
+.footer-bottom{margin-top:40px;padding-top:20px;border-top:1px solid var(--line);font-size:.82rem;color:#5b6b65;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+/* FORM */
+label{font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:#5b6b65;display:block;margin-top:12px;}
+input,textarea,select{display:block;width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:3px;background:var(--card);font-family:'Inter',sans-serif;font-size:.95rem;color:var(--ink);margin-top:6px;}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--pl);outline-offset:1px;}
+textarea{resize:vertical;}
+
+/* Quick cards */
+.quick-card{
+  display:block;
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:6px;
+  padding:28px 24px;
+  text-decoration:none;
+  color:var(--ink);
+  transition:transform .2s,box-shadow .2s,border-color .2s;
+  cursor:pointer;
+}
+.quick-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 12px 32px rgba(20,38,32,.1);
+  border-color:var(--primary);
+}
+.qc-icon{
+  width:60px;height:60px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:18px;
+}
+.qc-title{font-size:1.1rem;font-weight:700;margin-bottom:8px;color:var(--ink);}
+.qc-desc{font-size:.88rem;color:#5b6b65;line-height:1.5;margin-bottom:14px;}
+.qc-arrow{font-size:.82rem;font-weight:600;color:var(--primary);letter-spacing:.02em;}
+.quick-card:hover .qc-arrow{text-decoration:underline;}
+
+/* ADMIN PANEL OVERLAY UI */
+.admin-trigger {position:fixed;bottom:24px;right:24px;background:var(--ink);color:#fff;border-radius:50px;padding:12px 24px;font-family:'JetBrains Mono',monospace;font-size:0.8rem;z-index:999;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,0.2);border:1px solid var(--gold);}
+.admin-modal {display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(20,38,32,0.6);backdrop-filter:blur(4px);z-index:1000;align-items:center;justify-content:center;}
+.admin-content {background:var(--bg);width:90%;max-width:700px;border-radius:8px;padding:32px;box-shadow:0 20px 50px rgba(0,0,0,0.3);max-height:85vh;overflow-y:auto;border:2px solid var(--ink);}
+.admin-header {display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:20px;}
+.close-admin {font-size:1.5rem;cursor:pointer;font-weight:bold;}
+</style>
 </head>
 <body>
-  <nav class="nav">
-    <div class="brand">SUG <span>Awards</span></div>
-    <div class="navlinks">
-      <a href="index.html" class="tab active">Home</a>
-      <a href="vote.html" class="tab">Vote Now</a>
-      <a href="leaderboard.html" class="tab">Leaderboard</a>
-      <a href="admin.html" class="tab">Admin</a>
+
+<header>
+  <div class="nav">
+    <a href="index.html" class="brand">
+      <div class="brand-text">
+        <span class="top">SUG THE POLYTECHNIC IBADAN</span>
+        <span class="bot" id="admin-era-text">48th Administration — Era Of Unification 2025/2026</span>
+      </div>
+    </a>
+    <button class="menu-toggle" id="menu-btn" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </button>
+    <nav class="links" id="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="executives.html">Executives</a>
+      <a href="manifesto.html">Manifesto</a>
+      <a href="notices.html">Notices</a>
+      <a href="past-leaders.html">Past Leaders</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO SECTION -->
+  <div class="page-hero">
+    <div class="wrap">
+      <div class="eyebrow" id="hero-eyebrow">SUG POLY IBADAN</div>
+      <h1 id="hero-title">The Era Of Unification</h1>
+      <p id="hero-desc">Welcome to the central gateway of the 48th Executive Administration. Transparency, student welfare, and academic progress unified.</p>
     </div>
-  </nav>
+  </div>
 
-  <header class="hero">
-    <div class="badge">Voting is open</div>
-    <h1>SUG Dinner & Award Night Voting Platform</h1>
-    <p>Support your favourite nominees and help them win recognition. The public home page opens first, and admin login is only shown on the Admin page.</p>
-  </header>
+  <!-- NAVIGATION DIRECTORY MODULES -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Directory Links</div>
+        <h2>Portal Portfolios</h2>
+      </div>
+      <div class="grid-system three-col" id="directory-container">
+        <a href="about.html" class="quick-card">
+          <div class="qc-title">About Our Mission</div>
+          <div class="qc-desc">Discover the core values and operations structuring the executive framework this session.</div>
+          <div class="qc-arrow">Read Directory →</div>
+        </a>
+        <a href="executives.html" class="quick-card">
+          <div class="qc-title">The Executives</div>
+          <div class="qc-desc">Meet the council profiles behind decision-making channels this term.</div>
+          <div class="qc-arrow">View Members →</div>
+        </a>
+        <a href="manifesto.html" class="quick-card">
+          <div class="qc-title">Official Manifesto</div>
+          <div class="qc-desc">Review promises made, structures broken down, and items executed across semesters.</div>
+          <div class="qc-arrow">Review Manifestos →</div>
+        </a>
+        <a href="notices.html" class="quick-card">
+          <div class="qc-title">Campus Notices</div>
+          <div class="qc-desc">Stay tuned to verified information alerts broadcasted straight from the Secretariat desk.</div>
+          <div class="qc-arrow">Check Board →</div>
+        </a>
+        <a href="past-leaders.html" class="quick-card">
+          <div class="qc-title">Past Leaders Archive</div>
+          <div class="qc-desc">Honoring structural milestones accomplished by ancestral paths before us.</div>
+          <div class="qc-arrow">Explore Archives →</div>
+        </a>
+        <a href="contact.html" class="quick-card">
+          <div class="qc-title">Contact Channels</div>
+          <div class="qc-desc">Submit formal requests, report student challenges, or speak directly to support.</div>
+          <div class="qc-arrow">Reach Out →</div>
+        </a>
+      </div>
+    </div>
+  </section>
 
-  <main class="wrap">
-    <section class="section card stats">
-      <div class="stat"><div class="num" id="homeVotes">48,320</div><div class="lbl">Total Votes</div></div>
-      <div class="stat"><div class="num" id="homeNominees">0</div><div class="lbl">Nominees</div></div>
-      <div class="stat"><div class="num" id="homeCats">0</div><div class="lbl">Categories</div></div>
-    </section>
+  <!-- RECENT NOTICES COMPONENT -->
+  <section id="notices-section">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow">Public Updates</div>
+        <h2>Active Executive Notices</h2>
+      </div>
+      <div class="grid-system two-col" id="notices-container">
+        <div class="card">
+          <div class="eyebrow" style="color:var(--gold);">Urgent Alert</div>
+          <h3 style="margin:8px 0;">First Semester Resumption Adjustments</h3>
+          <p>Please note that executive frameworks are synced continuously with administrative management modifications regarding incoming timelines.</p>
+        </div>
+        <div class="card">
+          <div class="eyebrow">Welfare Board</div>
+          <h3 style="margin:8px 0;">Campus Transport Price Regularization</h3>
+          <p>The Era of Unification team has successfully negotiated sustainable internal transport tariffs for campus routes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
-    <section class="section card content">
-      <h2>How it works</h2>
-      <ol class="steps">
-        <li>Choose a category.</li>
-        <li>Select a nominee.</li>
-        <li>Enter vote count.</li>
-        <li>Proceed to payment.</li>
-      </ol>
-    </section>
-  </main>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="brand-text">
+          <span class="top">SUG POLY IBADAN</span>
+          <span class="bot">Progress Through Unity</span>
+        </div>
+      </div>
+      <div class="footer-cols">
+        <div>
+          <h5>Explore Portal</h5>
+          <a href="about.html">About Framework</a>
+          <a href="executives.html">Current Executives</a>
+          <a href="manifesto.html">The Manifesto</a>
+        </div>
+        <div>
+          <h5>Announcements</h5>
+          <a href="notices.html">Notices & Board Updates</a>
+          <a href="past-leaders.html">Historical Roll Call</a>
+          <a href="contact.html">Grievance Desks</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 SUG The Polytechnic Ibadan. Designed for Next-Gen Student Leadership.</span>
+      <span>Era Of Unification</span>
+    </div>
+  </div>
+</footer>
 
-  <footer class="footer">Powered by the Student Union Government</footer>
+<!-- INTEGRATED REALTIME WEB ADMINISTRATIVE CONTROLLER -->
+<div class="admin-trigger" onclick="openAdminModal()">⚡ Open Admin Workspace</div>
 
-  <script src="script.js"></script>
-  <script>
-    setActivePage("home");
-    updateHomeStats();
-  </script>
+<div class="admin-modal" id="adminModal">
+  <div class="admin-content">
+    <div class="admin-header">
+      <h3>System Administration Dashboard</h3>
+      <span class="close-admin" onclick="closeAdminModal()">×</span>
+    </div>
+    
+    <form id="adminForm" onsubmit="applyAdministrationUpdates(event)">
+      <h4 style="border-bottom: 1px solid var(--line); padding-bottom:4px;">1. System Era Setup</h4>
+      <label>Administration Title String</label>
+      <input type="text" id="input-era" value="48th Administration — Era Of Unification 2025/2026" required>
+      
+      <label>Hero Welcome Header Title</label>
+      <input type="text" id="input-hero-title" value="The Era Of Unification">
+      
+      <label>Hero Global Description Paragraph</label>
+      <textarea id="input-hero-desc" rows="3">Welcome to the central gateway of the 48th Executive Administration. Transparency, student welfare, and academic progress unified.</textarea>
+
+      <h4 style="border-bottom: 1px solid var(--line); padding-bottom:4px; margin-top:24px;">2. Broadcast Dynamic Notice Entry</h4>
+      <label>Notice Urgency Level Tag</label>
+      <select id="notice-tag">
+        <option value="Urgent Alert">Urgent Alert</option>
+        <option value="General Information">General Information</option>
+        <option value="Academic Board">Academic Board</option>
+        <option value="Welfare Board">Welfare Board</option>
+      </select>
+      
+      <label>Notice Announcement Title</label>
+      <input type="text" id="notice-title" placeholder="e.g., Portal Registration Closure Extended">
+      
+      <label>Detailed Brief Description</label>
+      <textarea id="notice-body" rows="3" placeholder="Write full text details here..."></textarea>
+      
+      <button type="button" class="btn btn-ghost" style="margin-top:12px; display:block; width:100%;" onclick="addNewNotice()">+ Inject Notice Live into Board</button>
+
+      <div style="margin-top:32px; display:flex; gap:12px;">
+        <button type="submit" class="btn btn-primary" style="flex:1;">Save Global Workspace Changes</button>
+        <button type="button" class="btn btn-ghost" onclick="closeAdminModal()">Discard changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+// Responsive Mobile Toggle Configuration
+function toggleMenu() {
+  const links = document.getElementById('nav-links');
+  links.classList.toggle('open');
+}
+
+// Modal Toggle Handlers 
+function openAdminModal() {
+  document.getElementById('adminModal').style.display = 'flex';
+}
+function closeAdminModal() {
+  document.getElementById('adminModal').style.display = 'none';
+}
+
+// Dynamic Action Injectors for Live Pages Simulation
+function applyAdministrationUpdates(event) {
+  event.preventDefault();
+  
+  const eraText = document.getElementById('input-era').value;
+  const heroTitle = document.getElementById('input-hero-title').value;
+  const heroDesc = document.getElementById('input-hero-desc').value;
+  
+  // Real-time page element rewriting values
+  document.getElementById('admin-era-text').innerText = eraText;
+  document.getElementById('hero-title').innerText = heroTitle;
+  document.getElementById('hero-desc').innerText = heroDesc;
+  
+  alert("Success! System parameters applied across index layout views.");
+  closeAdminModal();
+}
+
+function addNewNotice() {
+  const tag = document.getElementById('notice-tag').value;
+  const title = document.getElementById('notice-title').value;
+  const body = document.getElementById('notice-body').value;
+  
+  if(!title || !body) {
+    alert("Please complete both title and description input blocks.");
+    return;
+  }
+  
+  const container = document.getElementById('notices-container');
+  const colorTag = tag.includes('Urgent') ? 'color:var(--red);' : 'color:var(--gold);';
+  
+  const newCard = document.createElement('div');
+  newCard.className = 'card';
+  newCard.innerHTML = `
+    <div class="eyebrow" style="${colorTag}">${tag}</div>
+    <h3 style="margin:8px 0;">${title}</h3>
+    <p>${body}</p>
+  `;
+  
+  // Prepends new notice to ensure visibility at top
+  container.insertBefore(newCard, container.firstChild);
+  
+  // Reset fields
+  document.getElementById('notice-title').value = '';
+  document.getElementById('notice-body').value = '';
+  alert("Notice broadcast live below the dynamic Hero Banner!");
+}
+</script>
 </body>
 </html>
